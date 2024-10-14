@@ -5,7 +5,7 @@ import (
 	"log/slog"
 	"os"
 
-	"conntracker/internal/conntracker"
+	"github.com/epfl-si/mariadb-conntracker/internal/conntracker"
 )
 
 func main() {
