@@ -15,12 +15,12 @@ var version = "dev"
 func main() {
 
 	versionFlag := flag.Bool("version", false, "Print version information and exit")
-    flag.Parse()
+	flag.Parse()
 
-    if *versionFlag || (len(os.Args) > 1 && os.Args[1] == "version") {
-        fmt.Printf("conntracker version %s\n", version)
-        os.Exit(0)
-    }
+	if *versionFlag || (len(os.Args) > 1 && os.Args[1] == "version") {
+		fmt.Printf("conntracker version %s\n", version)
+		os.Exit(0)
+	}
 
 	cfg, err := conntracker.InitConfig()
 	if err != nil {
