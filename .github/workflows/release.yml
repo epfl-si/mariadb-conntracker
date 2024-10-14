@@ -11,7 +11,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
 
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -21,10 +21,11 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.21'  # Latest ver available on RHEL8
+          go-version: '1.22'
 
       - name: Build
         run: >-
+          CGO_ENABLED=0
           go build
           -v
           -ldflags "-X main.version=$(git describe --tags --always --dirty)"

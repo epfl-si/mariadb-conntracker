@@ -3,7 +3,7 @@ package conntracker
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 	"os"
 	"time"
 )
@@ -15,7 +15,7 @@ func OpenOrCreateDB(cfg Config) (*sql.DB, error) {
 		dbFileExists = false
 	}
 
-	db, err := sql.Open("sqlite3", cfg.SqlitePath)
+	db, err := sql.Open("sqlite", cfg.SqlitePath)
 
 	if !dbFileExists {
 		err = InitDatabase(db)

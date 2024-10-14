@@ -1,7 +1,7 @@
 .PHONY: build run
 
 build:
-	go build -o conntracker cmd/conntracker/main.go
+	CGO_ENABLED=0 go build -o conntracker cmd/conntracker/main.go
 
 run: build
 	./conntracker
