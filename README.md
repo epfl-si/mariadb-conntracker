@@ -54,6 +54,11 @@ Run the program manually:
 
 No output means the script worked. Head to [Read the SQLite database] bellow to retrieve the data.
 
+You can also check the version installed using:
+```go
+./conntracker version
+```
+
 ## Cron Job Setup
 
 To set up a cron job:
