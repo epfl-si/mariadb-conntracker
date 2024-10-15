@@ -7,7 +7,7 @@ This release addresses inconsistencies in date handling throughout the program. 
 
 ### Changes
 - Standardized date format to include time location across all program components
-- Store the time zone indicator at end of date in SQLite (+02:00 CEST)
+- Store the time zone indicator at the end of date in SQLite (E.G.: +02:00 for GMT+2)
 
 ## v1.0.0 (2024-10-14)
 
