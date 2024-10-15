@@ -6,6 +6,7 @@ import (
 	"log"
 	"log/slog"
 	"os"
+	"time"
 
 	"github.com/epfl-si/mariadb-conntracker/internal/conntracker"
 )
@@ -56,6 +57,14 @@ func run(cfg conntracker.Config) error {
 	if err != nil {
 		slog.Error("error getting files to process", "error_msg", err)
 		return err
+	}
+
+	// Round to the nearest second (filesystem returns 2024-10-15 13:43:57.109984656 +0200 CEST)
+	roundedNewLastProcessedTime := newLastProcessedTime.Round(time.Second)
+
+	if lastProcessedTime.Compare(roundedNewLastProcessedTime) >= 0 {
+		slog.Info("no connections found since last processed time", "lastProcessedTime", lastProcessedTime)
+		return nil
 	}
 
 	accounts, err := conntracker.ProcessFilesParallel(cfg, filePaths)
