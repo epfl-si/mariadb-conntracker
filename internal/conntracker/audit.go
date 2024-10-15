@@ -14,6 +14,7 @@ import (
 
 func FilterAndSortNewFiles(cfg Config, lastProcessedTime time.Time) ([]string, time.Time, error) {
 	var fileInfos []FileInfo
+	totalFiles := 0
 	slog.Debug("debug", "lastProcessedTime", lastProcessedTime)
 
 	err := filepath.Walk(cfg.AuditLogPath, func(path string, info os.FileInfo, err error) error {
@@ -21,11 +22,14 @@ func FilterAndSortNewFiles(cfg Config, lastProcessedTime time.Time) ([]string, t
 			return fmt.Errorf("error accessing path %s: %w", path, err)
 		}
 
-		if !info.IsDir() && info.ModTime().After(lastProcessedTime) {
-			fileInfos = append(fileInfos, FileInfo{
-				Path:    path,
-				ModTime: info.ModTime(),
-			})
+		if !info.IsDir() {
+			totalFiles++
+			if info.ModTime().After(lastProcessedTime) {
+				fileInfos = append(fileInfos, FileInfo{
+					Path:    path,
+					ModTime: info.ModTime(),
+				})
+			}
 		}
 
 		return nil
@@ -33,6 +37,10 @@ func FilterAndSortNewFiles(cfg Config, lastProcessedTime time.Time) ([]string, t
 
 	if err != nil {
 		return nil, lastProcessedTime, fmt.Errorf("error walking through directory: %w", err)
+	}
+
+	if totalFiles == 0 {
+		return nil, lastProcessedTime, fmt.Errorf("no files found in the directory %s", cfg.AuditLogPath)
 	}
 
 	// Sort files by modification time, oldest first
