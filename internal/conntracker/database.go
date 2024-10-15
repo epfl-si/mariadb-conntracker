@@ -50,11 +50,11 @@ func GetLastProcessedTime(cfg Config, db *sql.DB) (time.Time, error) {
 	// Check if lastRunDate is NULL (which will be the case for an empty table)
 	if !lastRunDate.Valid || lastRunDate.String == "" {
 		fmt.Println("No valid dates found in the Accounts table")
-		return time.Date(1, 1, 1, 0, 0, 1, 0, time.UTC), nil
+		return time.Date(1, 1, 1, 0, 0, 1, 0, cfg.TimeLocation), nil
 	}
 
 	// Parse the string into a time.Time value
-	t, err := time.Parse(time.RFC3339, lastRunDate.String)
+	t, err := time.Parse(cfg.TimeFormatDB, lastRunDate.String)
 	if err != nil {
 		return time.Time{}, fmt.Errorf("error parsing date '%s' with layout '%s': %w",
 			lastRunDate.String, cfg.TimeFormatDB, err)
@@ -132,8 +132,16 @@ func InsertOrUpdateAccounts(cfg Config, db *sql.DB, accounts map[string]AccountI
 	defer insertStmt.Close()
 
 	for _, a := range accounts {
+
+		// Append location to date string (+02:00 CEST for Europe/Zurich)
+		timeWithLocation := time.Date(
+	        a.LastSeen.Year(), a.LastSeen.Month(), a.LastSeen.Day(),
+	        a.LastSeen.Hour(), a.LastSeen.Minute(), a.LastSeen.Second(),
+	        a.LastSeen.Nanosecond(), cfg.TimeLocation)
+	    formatedTime := timeWithLocation.Format(cfg.TimeFormatDB)
+
 		// Try to update first
-		result, err := updateStmt.Exec(a.LastSeen, a.Name, a.Host)
+		result, err := updateStmt.Exec(formatedTime, a.Name, a.Host)
 		if err != nil {
 			return 0, 0, fmt.Errorf("error updating account: %w", err)
 		}
@@ -145,7 +153,7 @@ func InsertOrUpdateAccounts(cfg Config, db *sql.DB, accounts map[string]AccountI
 
 		// If no rows were affected, insert a new record
 		if rowsAffected == 0 {
-			_, err = insertStmt.Exec(a.Name, a.Host, a.LastSeen)
+			_, err = insertStmt.Exec(a.Name, a.Host, formatedTime)
 			if err != nil {
 				return 0, 0, fmt.Errorf("error inserting account: %w", err)
 			}

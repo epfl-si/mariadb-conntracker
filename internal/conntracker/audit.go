@@ -3,6 +3,7 @@ package conntracker
 import (
 	"bufio"
 	"fmt"
+	"log/slog"
 	"os"
 	"path/filepath"
 	"sort"
@@ -13,6 +14,7 @@ import (
 
 func FilterAndSortNewFiles(cfg Config, lastProcessedTime time.Time) ([]string, time.Time, error) {
 	var fileInfos []FileInfo
+	slog.Debug("debug", "lastProcessedTime", lastProcessedTime)
 
 	err := filepath.Walk(cfg.AuditLogPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
