@@ -53,8 +53,10 @@ func GetLastProcessedTime(cfg Config, db *sql.DB) (time.Time, error) {
 		return time.Date(1, 1, 1, 0, 0, 1, 0, cfg.TimeLocation), nil
 	}
 
-	// Parse the string into a time.Time value
-	t, err := time.Parse(cfg.TimeFormatDB, lastRunDate.String)
+	// SQLite stores the date in the format specified by cfg.TimeFormatDB (e.g., "2006-01-02 15:04:05-07:00"),
+	// but returns it as RFC3339 (e.g., "2024-10-16T11:15:17.033+02:00") when queried.
+	// We parse it using time.RFC3339 to accommodate this behavior.
+	t, err := time.Parse(time.RFC3339, lastRunDate.String)
 	if err != nil {
 		return time.Time{}, fmt.Errorf("error parsing date '%s' with layout '%s': %w",
 			lastRunDate.String, cfg.TimeFormatDB, err)
