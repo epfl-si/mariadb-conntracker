@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v1.1.1 (2024-10-16)
+
+### Summary
+Fix a bug introduced in v1.1.0 that prevent the script to run a second time.
+
+### Fixes
+- Fix date format from SQLite when retrieving the last processing date from the mysql@localhost account.
+
 ## v1.1.0 (2024-10-15)
 
 ### Summary
