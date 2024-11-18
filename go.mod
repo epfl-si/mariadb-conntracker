@@ -4,7 +4,7 @@ go 1.22.7
 
 require (
 	gopkg.in/ini.v1 v1.67.0
-	modernc.org/sqlite v1.33.1
+	modernc.org/sqlite v1.34.1
 )
 
 require (
