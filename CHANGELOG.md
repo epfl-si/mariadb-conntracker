@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v1.1.3 (2025-03-17)
+- Bump modernc.org/sqlite from 1.34.5 to 1.36.1
+
 ## v1.1.2 (2025-03-14)
 - Bump modernc.org/sqlite from 1.33.1 to 1.34.5
 
