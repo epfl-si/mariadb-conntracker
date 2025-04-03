@@ -1,7 +1,8 @@
 module github.com/epfl-si/mariadb-conntracker
 
-go 1.22.7
-toolchain go1.24.1
+go 1.23.0
+
+toolchain go1.24.2
 
 require (
 	gopkg.in/ini.v1 v1.67.0
