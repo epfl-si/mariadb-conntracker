@@ -2,6 +2,7 @@
 
 ## v1.1.4 (2025-04-03)
 - Bump modernc.org/sqlite from 1.36.1 to 1.37.0
+- Bump Go from 1.22 to 1.24
 
 ## v1.1.3 (2025-03-17)
 - Bump modernc.org/sqlite from 1.34.5 to 1.36.1
