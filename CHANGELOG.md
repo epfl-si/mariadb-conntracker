@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v1.1.10 (2025-11-21)
+- Bump modernc.org/sqlite from 1.40.0 to 1.40.1
+
 ## v1.1.9 (2025-09-04)
 - Bump modernc.org/sqlite from 1.38.2 to 1.40.0
 
