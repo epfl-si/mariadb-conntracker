@@ -15,8 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Release
-        uses: softprops/action-gh-release@v2
+      - name: Extract changelog for this version
+        id: changelog
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          # Extract content between this version header and the next version header
+          CHANGELOG=$(awk "/^## ${VERSION} /{flag=1; next} /^## v[0-9]/{flag=0} flag" CHANGELOG.md)
+          echo "content<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
 
       - name: Set up Go
         uses: actions/setup-go@v4
@@ -36,4 +44,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          body: ${{ steps.changelog.outputs.content }}
           files: conntracker
