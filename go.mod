@@ -6,7 +6,7 @@ toolchain go1.24.2
 
 require (
 	gopkg.in/ini.v1 v1.67.1
-	modernc.org/sqlite v1.44.2
+	modernc.org/sqlite v1.45.0
 )
 
 require (
