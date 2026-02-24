@@ -1,8 +1,11 @@
 # CHANGELOG
 
+## v1.1.12 (2026-02-24)
+- Bump modernc.org/sqlite from 1.44.2 to 1.46.1
+
 ## v1.1.11 (2026-01-19)
-- Bumps modernc.org/sqlite from 1.40.1 to 1.43.0.
-- Bumps gopkg.in/ini.v1 from 1.67.0 to 1.67.1.
+- Bump modernc.org/sqlite from 1.40.1 to 1.43.0.
+- Bump gopkg.in/ini.v1 from 1.67.0 to 1.67.1.
 
 ## v1.1.10 (2025-11-21)
 - Bump modernc.org/sqlite from 1.40.0 to 1.40.1
