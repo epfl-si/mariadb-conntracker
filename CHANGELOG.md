@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v1.1.13 (2026-03-30)
+- Bumps modernc.org/sqlite from 1.46.1 to 1.47.0.
+
 ## v1.1.12 (2026-02-24)
 - Bump modernc.org/sqlite from 1.44.2 to 1.46.1
 
