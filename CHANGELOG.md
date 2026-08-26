@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - Bump Go from 1.26.0 to 1.27. Release number is omitted so the build uses
   the latest patch version.
+- Bump modernc.org/sqlite from 1.56.0 to 1.57.0 [changelog](https://gitlab.com/cznic/sqlite/blob/master/CHANGELOG.md).
 
 
 ## [v1.4.4] - 2026-08-12
