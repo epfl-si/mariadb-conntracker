@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 
 - Bump debug container from gcr.io/distroless/static-debian12:debug-nonroot to static-debian13.
+
+### Dependencies
+
+- Bump Go from 1.26.0 to 1.27. Release number is omitted so the build uses
+  the latest patch version.
+
+
 ## [v1.4.4] - 2026-08-12
 
 ### Dependencies
