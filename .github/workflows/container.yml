@@ -25,6 +25,8 @@ jobs:
       - uses: ko-build/setup-ko@v0.10
 
       - name: Build static image
+        env:
+          KO_DEFAULTBASEIMAGE: cgr.dev/chainguard/static
         run: |
           ko build "${PACKAGE_PATH}" \
             --bare \
