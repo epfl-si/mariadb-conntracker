@@ -35,7 +35,7 @@ jobs:
 
       - name: Build debug image
         env:
-          KO_DEFAULTBASEIMAGE: gcr.io/distroless/static-debian12:debug-nonroot
+          KO_DEFAULTBASEIMAGE: gcr.io/distroless/static-debian13:debug-nonroot
         run: |
           ko build "${PACKAGE_PATH}" \
             --bare \

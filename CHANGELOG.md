@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [v1.4.5] - 2026-08-26
+
+### Changed
+
+- Bump debug container from gcr.io/distroless/static-debian12:debug-nonroot to static-debian13.
 ## [v1.4.4] - 2026-08-12
 
 ### Dependencies
